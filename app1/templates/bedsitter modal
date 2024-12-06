@@ -1,0 +1,61 @@
+<!--bedsitter x-->
+   <div class="col">
+    <div class="cardhouse h-100">
+      <div class="bedsitter-image-container position-relative">
+        <!-- Status Button -->
+        <button class="btn btn-sm btn-success position-absolute top-0 start-0 m-2" style="z-index: 10;">Full</button>
+        <img src="" class="card-img-top" alt="Skyscrapers" />
+      </div>
+      <div class="card-footer"> 
+        <!-- name  -->
+          <h5 class="card-title"></h5>
+
+          <h6>Location: </h6>
+          
+          <h6>KSh </h6>
+               
+
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bedsitter">Details</button>
+          <!-- target is bedsitter id below  -->
+       
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for bedsitter x-->
+   <!-- id is no of bedsitter  -->
+ <div class="modal fade" id="bedsitter" tabindex="-1" aria-labelledby="detailsModal1Label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="detailsModal1Label">House Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <!-- location  -->
+          <h6>Location: </h6>
+          <p>Description: </p>
+          <br>
+          <p>Pros:
+            <ul>
+                <li>Security.</li>
+                <li>Backup Water Supply.</li>
+                <li></li>
+            </ul> </p>
+          <h6>Gallery:</h6>
+          <div class="row">
+            <div class="col-md-4">
+              <img src="{% static '' %}" alt="House Image 1" class="img-fluid" />
+            </div>
+            <div class="col-md-4">
+              <img src="{% static '' %}" alt="House Image 2" class="img-fluid" />
+            </div>
+            <div class="col-md-4">
+              <img src="{% static '' %}" alt="House Image 3" class="img-fluid" />
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div> 

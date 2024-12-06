@@ -1,0 +1,731 @@
+         <div class="col-lg-6">
+          <form action="{% url 'contact' %}" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="400">
+            {% csrf_token %}
+            <div class="row gy-4">
+
+              <div class="col-md-6">
+                <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+              </div>
+
+              <div class="col-md-6 ">
+                <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+              </div>
+
+              <div class="col-md-12">
+                <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+              </div>
+
+              <div class="col-md-12">
+                <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+              </div>
+
+              <div class="col-md-12 text-center">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                <button type="submit">Send Message</button>
+              </div>
+
+            </div>
+          </form>
+        </div>
+
+
+            <!-- Team Section -->
+    <section id="team" class="team section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <span>Team</span>
+        <h2>Team</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+            <div class="member">
+              <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
+              <div class="member-content">
+                <h4>Walter White</h4>
+                <span>Web Development</span>
+                <p>
+                  Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut
+                </p>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter-x"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
+            <div class="member">
+              <img src="assets/img/team/team-2.jpg" class="img-fluid" alt="">
+              <div class="member-content">
+                <h4>Sarah Jhinson</h4>
+                <span>Marketing</span>
+                <p>
+                  Repellat fugiat adipisci nemo illum nesciunt voluptas repellendus. In architecto rerum rerum temporibus
+                </p>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter-x"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
+            <div class="member">
+              <img src="assets/img/team/team-3.jpg" class="img-fluid" alt="">
+              <div class="member-content">
+                <h4>William Anderson</h4>
+                <span>Content</span>
+                <p>
+                  Voluptas necessitatibus occaecati quia. Earum totam consequuntur qui porro et laborum toro des clara
+                </p>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter-x"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Team Section -->
+
+
+
+        <!-- Pricing Section -->
+    <section id="pricing" class="pricing section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <span>Pricing</span>
+        <h2>Pricing</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row g-4 g-lg-0">
+
+          <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+            <div class="pricing-item">
+              <h3>Free Plan</h3>
+              <h4><sup>$</sup>0<span> / month</span></h4>
+              <ul>
+                <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
+                <li><i class="bi bi-check"></i> <span>Nec feugiat nisl pretium</span></li>
+                <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
+                <li class="na"><i class="bi bi-x"></i> <span>Pharetra massa massa ultricies</span></li>
+                <li class="na"><i class="bi bi-x"></i> <span>Massa ultricies mi quis hendrerit</span></li>
+              </ul>
+              <div class="text-center"><a href="#" class="buy-btn">Buy Now</a></div>
+            </div>
+          </div><!-- End Pricing Item -->
+
+          <div class="col-lg-4 featured" data-aos="zoom-in" data-aos-delay="200">
+            <div class="pricing-item">
+              <h3>Business Plan</h3>
+              <h4><sup>$</sup>29<span> / month</span></h4>
+              <ul>
+                <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
+                <li><i class="bi bi-check"></i> <span>Nec feugiat nisl pretium</span></li>
+                <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
+                <li><i class="bi bi-check"></i> <span>Pharetra massa massa ultricies</span></li>
+                <li><i class="bi bi-check"></i> <span>Massa ultricies mi quis hendrerit</span></li>
+              </ul>
+              <div class="text-center"><a href="#" class="buy-btn">Buy Now</a></div>
+            </div>
+          </div><!-- End Pricing Item -->
+
+          <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+            <div class="pricing-item">
+              <h3>Developer Plan</h3>
+              <h4><sup>$</sup>49<span> / month</span></h4>
+              <ul>
+                <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
+                <li><i class="bi bi-check"></i> <span>Nec feugiat nisl pretium</span></li>
+                <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
+                <li><i class="bi bi-check"></i> <span>Pharetra massa massa ultricies</span></li>
+                <li><i class="bi bi-check"></i> <span>Massa ultricies mi quis hendrerit</span></li>
+              </ul>
+              <div class="text-center"><a href="#" class="buy-btn">Buy Now</a></div>
+            </div>
+          </div><!-- End Pricing Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Pricing Section -->
+
+
+        <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <span>Portfolio</span>
+        <h2>Portfolio</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+          <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
+            <li data-filter="*" class="filter-active">All</li>
+            <li data-filter=".filter-app">App</li>
+            <li data-filter=".filter-product">Card</li>
+            <li data-filter=".filter-branding">Web</li>
+          </ul><!-- End Portfolio Filters -->
+
+          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+              <img src="assets/img/masonry-portfolio/masonry-portfolio-1.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>App 1</h4>
+                <p>Lorem ipsum, dolor sit</p>
+                <a href="assets/img/masonry-portfolio/masonry-portfolio-1.jpg" title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+              <img src="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Product 1</h4>
+                <p>Lorem ipsum, dolor sit</p>
+                <a href="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" title="Product 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+              <img src="assets/img/masonry-portfolio/masonry-portfolio-3.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Branding 1</h4>
+                <p>Lorem ipsum, dolor sit</p>
+                <a href="assets/img/masonry-portfolio/masonry-portfolio-3.jpg" title="Branding 1" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+              <img src="assets/img/masonry-portfolio/masonry-portfolio-4.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>App 2</h4>
+                <p>Lorem ipsum, dolor sit</p>
+                <a href="assets/img/masonry-portfolio/masonry-portfolio-4.jpg" title="App 2" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+              <img src="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Product 2</h4>
+                <p>Lorem ipsum, dolor sit</p>
+                <a href="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" title="Product 2" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+              <img src="assets/img/masonry-portfolio/masonry-portfolio-6.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Branding 2</h4>
+                <p>Lorem ipsum, dolor sit</p>
+                <a href="assets/img/masonry-portfolio/masonry-portfolio-6.jpg" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+              <img src="assets/img/masonry-portfolio/masonry-portfolio-7.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>App 3</h4>
+                <p>Lorem ipsum, dolor sit</p>
+                <a href="assets/img/masonry-portfolio/masonry-portfolio-7.jpg" title="App 3" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+              <img src="assets/img/masonry-portfolio/masonry-portfolio-8.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Product 3</h4>
+                <p>Lorem ipsum, dolor sit</p>
+                <a href="assets/img/masonry-portfolio/masonry-portfolio-8.jpg" title="Product 3" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+              <img src="assets/img/masonry-portfolio/masonry-portfolio-9.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Branding 3</h4>
+                <p>Lorem ipsum, dolor sit</p>
+                <a href="assets/img/masonry-portfolio/masonry-portfolio-9.jpg" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+          </div><!-- End Portfolio Container -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Portfolio Section -->
+
+
+
+        <!-- Call To Action Section -->
+    <section id="call-to-action" class="call-to-action section dark-background">
+
+      <img src="assets/img/cta-bg.jpg" alt="">
+
+      <div class="container">
+        <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-xl-10">
+            <div class="text-center">
+              <h3>Call To Action</h3>
+              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <a class="cta-btn" href="#">Call To Action</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+   
+      
+      
+      
+
+          
+      
+      # model to register houses
+      class House(models.Model):
+              # Status choices
+          STATUS_CHOICES = [
+              ('Available', 'Available'),
+              ('Occupied', 'Occupied'),
+              ('For Sale', 'For Sale')
+          ]
+      
+          # Type choices
+          TYPE_CHOICES = [
+              ('Bedsitter', 'Bedsitter'),
+              ('One Bedroom', 'One Bedroom'),
+              ('Two Bedroom', 'Two Bedroom'),
+              ('Apartment', 'Apartment'),
+              ('Shop', 'Shop'),
+          ]
+      
+          # Location Choices 
+          LOCATION_CHOICES = [
+              ('Ole Kasasi A', 'Ole Kasasi A'),
+              ('Ole Kasasi B','Ole Kasasi B'),
+              ('Tumaini','Tumaini'),
+              ('Sironik Road','Sironik Road'),
+              ('Mayor Road','Mayor Road'),
+              ('Masai Lodge Road','Masai Lodge Road'),
+              ('Naivas','Naivas'),
+              ('Tuskys','Tuskys'),
+              ('Kware','Kware'),
+              ('Gataka Road','Gataka Road')
+          ]
+      
+      
+          # landlord = models.ForeignKey(Landlord, on_delete=models.CASCADE,related_name="houses")
+          # name = models.CharField(max_length=100)
+          # type= models.CharField(max_length=30, choices=TYPE_CHOICES)
+          # status = models.CharField(max_length=30,choices=STATUS_CHOICES )
+          # location = models.CharField(max_length=40, choices=LOCATION_CHOICES)
+          # dateadded = models.DateTimeField(default=timezone.now)
+          # images = models.ImageField(upload_to='NewHouses/')
+      
+      
+          # def __str__(self):
+          #     return f"{self.name} ({self.type}) - {self.status} {self.location}"
+          
+          # # Method to get the landlord's name
+          # def landlord_name(self):
+          #     return self.landlord.name
+          # landlord_name.short_description = 'Owner'  # Custom column name in admin
+      
+          landlord = models.ForeignKey(Landlord, on_delete=models.CASCADE, related_name="houses")
+          name = models.CharField(max_length=100)
+          type = models.CharField(max_length=30, choices=TYPE_CHOICES)
+          status = models.CharField(max_length=30, choices=STATUS_CHOICES)
+          location = models.CharField(max_length=40, choices=LOCATION_CHOICES)
+          dateadded = models.DateTimeField(default=timezone.now)
+          images = models.ImageField(upload_to='NewHouses/')
+      
+          def __str__(self):
+              return f"{self.name} ({self.type}) - {self.status} {self.location}"
+      
+          def landlord_name(self):
+              return self.landlord.name
+          landlord_name.short_description = 'Owner'
+      
+
+
+
+
+
+          <div class="row">
+
+            <div class="col-12">
+    
+    
+              <div class="property-slider-wrap">
+    
+    
+    
+                <div class="property-slider">
+    
+                  <div class="property-item">
+    
+                    <a href="property-single.html" class="img">
+                      <img src="{% static 'assets/img/slider1.jpg' %}" alt="Image" class="img-fluid scaled-image">
+                    </a>
+    
+                    <div class="property-content">
+                      <div class="price mb-2"><span>Tumaini</span></div>
+                      <div>
+                        <span class="d-block mb-2 text-black-50">5232 California Fake, Ave. 21BC</span>
+                        <span class="city d-block mb-3">California, USA</span>
+    
+                        <a href="property-single.html" class="btn btn-primary py-2 px-3">See details</a>
+                      </div>
+                    </div>
+                  </div> <!-- .item -->
+    
+                  <div class="property-item">
+    
+                    <a href="property-single.html" class="img">
+                      <img src="{% static 'assets/img/slider2.jpg' %}" alt="Image" class="img-fluid scaled-image">
+                    </a>
+    
+    
+                    <div class="property-content">
+                      <div class="price mb-2"><span>$1,291,000</span></div>
+                      <div>
+                        <span class="d-block mb-2 text-black-50">5232 California Fake, Ave. 21BC</span>
+                        <span class="city d-block mb-3">California, USA</span>
+    
+                        <div class="specs d-flex mb-4">
+                          <span class="d-block d-flex align-items-center me-3">
+                            <span class="icon-bed me-2"></span>
+                            <span class="caption">2 beds</span>
+                          </span>
+                          <span class="d-block d-flex align-items-center">
+                            <span class="icon-bath me-2"></span>
+                            <span class="caption">2 baths</span>
+                          </span>
+                        </div>
+    
+                        <a href="property-single.html" class="btn btn-primary py-2 px-3">See details</a>
+                      </div>
+                    </div>
+                  </div> <!-- .item -->
+    
+                  <div class="property-item">
+    
+                    <a href="property-single.html" class="img">
+                      <img src="{% static 'assets/img/slider3.jpg' %}" alt="Image" class="img-fluid scaled-image">
+                    </a>
+    
+    
+                    <div class="property-content">
+                      <div class="price mb-2"><span>$1,291,000</span></div>
+                      <div>
+                        <span class="d-block mb-2 text-black-50">5232 California Fake, Ave. 21BC</span>
+                        <span class="city d-block mb-3">California, USA</span>
+    
+                        <div class="specs d-flex mb-4">
+                          <span class="d-block d-flex align-items-center me-3">
+                            <span class="icon-bed me-2"></span>
+                            <span class="caption">2 beds</span>
+                          </span>
+                          <span class="d-block d-flex align-items-center">
+                            <span class="icon-bath me-2"></span>
+                            <span class="caption">2 baths</span>
+                          </span>
+                        </div>
+    
+                        <a href="property-single.html" class="btn btn-primary py-2 px-3">See details</a>
+                      </div>
+                    </div>
+                  </div> <!-- .item -->
+    
+                  <div class="property-item">
+    
+                    <a href="property-single.html" class="img">
+                      <img src="{% static 'assets/img/slider4.jpg' %}" alt="Image" class="img-fluid scaled-image">
+                    </a>
+    
+    
+                    <div class="property-content">
+                      <div class="price mb-2"><span>$1,291,000</span></div>
+                      <div>
+                        <span class="d-block mb-2 text-black-50">5232 California Fake, Ave. 21BC</span>
+                        <span class="city d-block mb-3">California, USA</span>
+    
+                        <div class="specs d-flex mb-4">
+                          <span class="d-block d-flex align-items-center me-3">
+                            <span class="icon-bed me-2"></span>
+                            <span class="caption">2 beds</span>
+                          </span>
+                          <span class="d-block d-flex align-items-center">
+                            <span class="icon-bath me-2"></span>
+                            <span class="caption">2 baths</span>
+                          </span>
+                        </div>
+    
+                        <a href="property-single.html" class="btn btn-primary py-2 px-3">See details</a>
+                      </div>
+                    </div>
+                  </div> <!-- .item -->
+    
+                  <div class="property-item">
+    
+                    <a href="property-single.html" class="img">
+                      <img src="{% static 'assets/img/slider5.jpeg' %}" alt="Image" class="img-fluid scaled-image">
+                    </a>
+    
+                    <div class="property-content">
+                      <div class="price mb-2"><span>$1,291,000</span></div>
+                      <div>
+                        <span class="d-block mb-2 text-black-50">5232 California Fake, Ave. 21BC</span>
+                        <span class="city d-block mb-3">California, USA</span>
+    
+                        <div class="specs d-flex mb-4">
+                          <span class="d-block d-flex align-items-center me-3">
+                            <span class="icon-bed me-2"></span>
+                            <span class="caption">2 beds</span>
+                          </span>
+                          <span class="d-block d-flex align-items-center">
+                            <span class="icon-bath me-2"></span>
+                            <span class="caption">2 baths</span>
+                          </span>
+                        </div>
+    
+                        <a href="property-single.html" class="btn btn-primary py-2 px-3">See details</a>
+                      </div>
+                    </div>
+                  </div> <!-- .item -->
+    
+                  <div class="property-item">
+    
+                    <a href="property-single.html" class="img">
+                      <img src="images/img_6.jpg" alt="Image" class="img-fluid">
+                    </a>
+    
+                    <div class="property-content">
+                      <div class="price mb-2"><span>$1,291,000</span></div>
+                      <div>
+                        <span class="d-block mb-2 text-black-50">5232 California Fake, Ave. 21BC</span>
+                        <span class="city d-block mb-3">California, USA</span>
+    
+                        <div class="specs d-flex mb-4">
+                          <span class="d-block d-flex align-items-center me-3">
+                            <span class="icon-bed me-2"></span>
+                            <span class="caption">2 beds</span>
+                          </span>
+                          <span class="d-block d-flex align-items-center">
+                            <span class="icon-bath me-2"></span>
+                            <span class="caption">2 baths</span>
+                          </span>
+                        </div>
+    
+                        <a href="property-single.html" class="btn btn-primary py-2 px-3">See details</a>
+                      </div>
+                    </div>
+                  </div> <!-- .item -->
+    
+                  <div class="property-item">
+    
+                    <a href="property-single.html" class="img">
+                      <img src="images/img_7.jpg" alt="Image" class="img-fluid">
+                    </a>
+    
+                    <div class="property-content">
+                      <div class="price mb-2"><span>$1,291,000</span></div>
+                      <div>
+                        <span class="d-block mb-2 text-black-50">5232 California Fake, Ave. 21BC</span>
+                        <span class="city d-block mb-3">California, USA</span>
+    
+                        <div class="specs d-flex mb-4">
+                          <span class="d-block d-flex align-items-center me-3">
+                            <span class="icon-bed me-2"></span>
+                            <span class="caption">2 beds</span>
+                          </span>
+                          <span class="d-block d-flex align-items-center">
+                            <span class="icon-bath me-2"></span>
+                            <span class="caption">2 baths</span>
+                          </span>
+                        </div>
+    
+                        <a href="property-single.html" class="btn btn-primary py-2 px-3">See details</a>
+                      </div>
+                    </div>
+                  </div> <!-- .item -->
+    
+                  <div class="property-item">
+    
+                    <a href="property-single.html" class="img">
+                      <img src="images/img_8.jpg" alt="Image" class="img-fluid">
+                    </a>
+    
+                    <div class="property-content">
+                      <div class="price mb-2"><span>$1,291,000</span></div>
+                      <div>
+                        <span class="d-block mb-2 text-black-50">5232 California Fake, Ave. 21BC</span>
+                        <span class="city d-block mb-3">California, USA</span>
+    
+                        <div class="specs d-flex mb-4">
+                          <span class="d-block d-flex align-items-center me-3">
+                            <span class="icon-bed me-2"></span>
+                            <span class="caption">2 beds</span>
+                          </span>
+                          <span class="d-block d-flex align-items-center">
+                            <span class="icon-bath me-2"></span>
+                            <span class="caption">2 baths</span>
+                          </span>
+                        </div>
+    
+                        <a href="property-single.html" class="btn btn-primary py-2 px-3">See details</a>
+                      </div>
+                    </div>
+                  </div> <!-- .item -->
+    
+                  <div class="property-item">
+    
+                    <a href="property-single.html" class="img">
+                      <img src="images/img_1.jpg" alt="Image" class="img-fluid">
+                    </a>
+    
+                    <div class="property-content">
+                      <div class="price mb-2"><span>$1,291,000</span></div>
+                      <div>
+                        <span class="d-block mb-2 text-black-50">5232 California Fake, Ave. 21BC</span>
+                        <span class="city d-block mb-3">California, USA</span>
+    
+                        <div class="specs d-flex mb-4">
+                          <span class="d-block d-flex align-items-center me-3">
+                            <span class="icon-bed me-2"></span>
+                            <span class="caption">2 beds</span>
+                          </span>
+                          <span class="d-block d-flex align-items-center">
+                            <span class="icon-bath me-2"></span>
+                            <span class="caption">2 baths</span>
+                          </span>
+                        </div>
+    
+                        <a href="property-single.html" class="btn btn-primary py-2 px-3">See details</a>
+                      </div>
+                    </div>
+                  </div> <!-- .item -->
+    
+    
+                </div>
+    
+    
+                <div id="property-nav" class="controls" tabindex="0" aria-label="Carousel Navigation">
+                  <span class="prev" data-controls="prev" aria-controls="property" tabindex="-1">Prev</span>
+                  <span class="next" data-controls="next" aria-controls="property" tabindex="-1">Next</span>
+                </div>
+    
+              </div>
+            </div>
+    
+          </div>
+
+
+<!-- <div class="container"> -->
+  <section style="background-color: rgb(243, 246, 248);">
+    <section style="background-color: silver; padding: 20px;">
+      <!-- Filter Section -->
+      <div class="d-flex justify-content-between align-items-start mb-4">
+        <!-- Filters Section -->
+        <div>
+            <div class="d-flex gap-3">
+                <!-- Location Filter -->
+                <select id="location-filter" class="form-control mb-2" style="width: 200px;">
+                    <option value="" selected disabled>Select Location</option>
+                    <option value="Ole Kasasi A">Ole Kasasi A</option>
+                    <option value="Tumaini">Tumaini</option>
+                    <option value="Ole Kasasi B">Ole Kasasi B</option>
+                    <option value="Sironik Road">Sironik Road</option>
+                    <option value="Mayor Road">Mayor Road</option>
+                    <option value="Masai Lodge">Masai Lodge</option>
+                    <option value="Naivas">Naivas</option>
+                    <option value="Gataka Road">Gataka Road</option>
+                    <option value="Mandazi Road">Mandazi Road</option>
+                </select>
+    
+                <!-- Price Filter -->
+                <select id="price-filter" class="form-control mb-2" style="width: 200px;">
+                    <option value="" selected disabled>Select Price</option>
+                    <option value="6000">KSh 6000</option>
+                    <option value="7000">KSh 7000</option>
+                    <option value="7500">KSh 7500</option>
+                    <option value="8000">KSh 8000</option>
+                    <option value="8500">Ksh 8500</option>
+                    <option value="9000">KSh 9000</option>
+                    <option value="10000">KSh 10000</option>
+                    <option value="11000">KSh 11000</option>
+                    <option value="12000">KSh 12000</option>
+                </select>
+            </div>
+
+            <input id="name-search" class="form-control mb-2 me-2" style="width: 200px;" type="text" placeholder="Search by Name">
+          </div>
+    
+            <!-- Buttons -->
+            <div class="mt-3 d-flex gap-3">
+                <button id="apply-filters" class="btn btn-success">Search</button>
+                <button id="clear-filters" class="btn btn-danger">Clear</button>
+            </div>
+
+          
+          
+        </div>
+    </div>
+    
+   
+
+
+   </section>
+
+
+
+<!-- <div class="card rounded" style="background-color: rgb(223, 228, 231);"> -->
+<section id="featured-services" class="featured-services section"  style="margin: 0 auto; max-width: 80%; overflow: hidden;">
+
+  <div id="no-results-message" class="text-center text-danger mt-3" style="display: none;">
+    <h5>Sorry, no houses meet your criteria.</h5>
+</div>

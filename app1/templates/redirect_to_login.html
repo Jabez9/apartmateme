@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script>
+        // Redirect after 5 seconds
+        setTimeout(() => {
+            window.location.href = "/login/";
+        }, 5000);
+
+        // Countdown logic
+        let countdown = 5;
+        const countdownElement = document.getElementById('countdown');
+        setInterval(() => {
+            if (countdown > 0) {
+                countdown -= 1;
+                countdownElement.textContent = countdown;
+            }
+        }, 1000);
+    </script>
+</head>
+<body>
+    <h1>{{ messages|safe }}</h1>
+    <p>You will be redirected to the login page in <span id="countdown">5</span> seconds.</p>
+</body>
+</html>

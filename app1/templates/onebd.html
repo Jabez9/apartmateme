@@ -1,0 +1,256 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block body %}
+            <!-- Header Start -->
+            <div class="container-fluid bg-breadcrumb">
+              <div class="container text-center py-5" style="max-width: 900px;">
+                  <h4 class="text-white display-4 mb-4 wow animate__animated animate__fadeInDown" data-wow-delay="0.1s" style="font-weight: bolder;"> One Bedroom</h4>
+                  <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                      <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                      <li class="breadcrumb-item active text-danger">One Bedroom</li>
+                  </ol>
+              </div>
+        
+          <!-- Header End -->
+        
+          <!-- Initialize WOW.js -->
+          <script>
+              new WOW().init(); // Initialize WOW.js
+          </script>
+
+        
+
+        <div class="container">
+
+        <h3 style="color: rgb(255, 255, 255); text-align: center;">Here is our range of one bedroom  listings</h3>
+
+         </div>
+        
+       
+</div>
+
+<section style="background-color: silver; padding: 20px;">
+  <!-- Filter Section -->
+  <div class="d-flex justify-content-between align-items-start mb-4">
+    <!-- Filters Section -->
+    <div>
+        <div class="d-flex gap-3">
+            <!-- Location Filter -->
+            <select id="location-filter" class="form-control mb-2" style="width: 200px;">
+                <option value="" selected disabled>Select Location</option>
+                <option value="Ole Kasasi A">Ole Kasasi A</option>
+                <option value="Tumaini">Tumaini</option>
+                <option value="Ole Kasasi B">Ole Kasasi B</option>
+                <option value="Sironik">Sironik</option>
+                <option value="Mayor Road">Mayor Road</option>
+                <option value="Masai Lodge Road">Masai Lodge Road</option>
+                <option value="Naivas">Naivas</option>
+                <option value="Gataka Road">Gataka Road</option>
+                <option value="Mandazi Road">Mandazi Road</option>
+            </select>
+
+            <!-- Price Filter -->
+            <select id="price-filter" class="form-control mb-2" style="width: 200px;">
+                <option value="" selected disabled>Select Price</option>
+                <option value="8500">Ksh 8500</option>
+                <option value="9000">KSh 9000</option>
+                <option value="10000">KSh 10000</option>
+                <option value="11000">KSh 11000</option>
+                <option value="12000">KSh 12000</option>
+                <option value="">Ksh 20000</option>
+                <option value="">Ksh 21000</option>
+                <option value="">Ksh 22000</option>
+                <option value="">Ksh 23000</option>
+                <option value="24000"> Ksh 24000</option>
+            </select>
+        </div>
+
+        <input id="name-search" class="form-control mb-2 me-2" style="width: 200px;" type="text" placeholder="Search by Name">
+      </div>
+
+        <!-- Buttons -->
+        <div class="mt-3 d-flex gap-3">
+            <button id="apply-filters" class="btn btn-primary">Search</button>
+            <button id="clear-filters" class="btn btn-danger">Clear</button>
+        </div>
+
+      
+      
+    </div>
+</div>
+
+
+
+
+</section>
+
+
+
+<!-- <div class="container"> -->
+
+<!-- Featured Services Section -->
+<section id="featured-services" class="featured-services section"  style="margin: 0 auto; max-width: 80%; padding: 20px 0; height: auto; overflow: hidden;">
+
+  <div id="no-results-message" class="text-center text-danger mt-3" style="display: none;">
+    <h5>Sorry, no houses currently meet your criteria.</h5>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+
+  
+<!--Kings Serentity-->
+<div class="col">
+    <div class="cardhouse h-100">
+      <div class="bedsitter-image-container position-relative">
+        <!-- Status Button -->
+        <button class="btn btn-sm btn-success position-absolute top-0 start-0 m-2" style="z-index: 10;">Full</button>
+        <img src="https://lh3.googleusercontent.com/p/AF1QipMKWCRBiIUQnPI9oJS0mwZetz3RYue-js8jkiAZ=s680-w680-h510" class="card-img-top" alt="Skyscrapers" />
+      </div>
+      <div class="card-footer"> 
+        <!-- name  -->
+          <h5 class="card-title">Kings Serenity</h5>
+
+          <h6>Location: Tumaini</h6>
+          <!-- Price -->
+          <h6>KSh 20000</h6>
+          <h6>Ksh 21000</h6>
+          <h6>Ksh 23000</h6>
+          <h6>Ksh 24000</h6>
+               
+
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kingsserenity">Details</button>
+          <!-- target is bedsitter id below  -->
+       
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for bedsitter x-->
+   <!-- id is no of bedsitter  -->
+ <div class="modal fade" id="kingsserenity" tabindex="-1" aria-labelledby="detailsModal1Label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="detailsModal1Label">House Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <!-- location  -->
+          <h6>Location: </h6>
+          <p>Description: </p>
+          <br>
+          <p>Pros:
+            <ul>
+                <li>Security.</li>
+                <li>Backup Water Supply.</li>
+                <li>Hospital.</li>
+                <li>Ample Parking.</li>
+                <li></li>
+            </ul> </p>
+          <h6>Gallery:</h6>
+          <div class="row">
+            <p>Here are some of the breathtaking views from Kings Serenity</p>
+            <div class="col-md-4">
+                
+              <img src="{% static 'assets/images/onebd/serenity/serenity1.jpeg' %}" alt="House Image 1" class="img-fluid" />
+            </div>
+            <div class="col-md-4">
+              <img src="{% static 'assets/images/onebd/serenity/serenity2.jpeg' %}" alt="House Image 2" class="img-fluid" />
+            </div>
+            <div class="col-md-4">
+              <img src="{% static 'assets/images/onebd/serenity/serenity3.jpeg' %}" alt="House Image 3" class="img-fluid" />
+              
+            </div>
+            <div class="col-md-4">
+                <img src="{% static 'assets/images/onebd/serenity/serenity4.jpeg' %}" alt="House Image 4" class="img-fluid" />
+                
+              </div>
+              <div class="col-md-4">
+                <img src="{% static 'assets/images/onebd/serenity/serenity5.jpeg' %}" alt="House Image 5" class="img-fluid" />
+                
+              </div>
+              <div class="col-md-4">
+                <img src="{% static 'assets/images/onebd/serenity/serenity6.jpeg' %}" alt="House Image 6" class="img-fluid" />
+                
+              </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div> 
+
+
+  </div>
+
+  </section>
+
+
+
+
+
+
+
+  <script>
+    document.getElementById('apply-filters').addEventListener('click', function () {
+      const locationFilter = document.getElementById('location-filter').value;
+      const priceFilter = document.getElementById('price-filter').value;
+      const nameSearch = document.getElementById('name-search').value.toLowerCase();
+  
+      // Get all house cards
+      const houseCards = document.querySelectorAll('.cardhouse');
+  
+      let anyMatch = false; // To track if any card matches the filters
+  
+      houseCards.forEach(card => {
+          const cardLocation = card.querySelector('h6:nth-child(2)').textContent.split(': ')[1];
+          const cardPrices = Array.from(card.querySelectorAll('h6')).slice(1).map(h6 => h6.textContent.replace(/\D/g, ''));
+          const cardName = card.querySelector('.card-title').textContent.toLowerCase();
+  
+          let matchesLocation = !locationFilter || cardLocation === locationFilter;
+          let matchesPrice = !priceFilter || cardPrices.includes(priceFilter);
+          let matchesName = !nameSearch || cardName.includes(nameSearch);
+  
+          // Show or hide the card based on filters
+          if (matchesLocation && matchesPrice && matchesName) {
+              card.parentElement.style.display = 'block';
+              anyMatch = true;
+          } else {
+              card.parentElement.style.display = 'none';
+          }
+      });
+  
+      // Show or hide "no results" message
+      const noResultsMessage = document.getElementById('no-results-message');
+      if (anyMatch) {
+          noResultsMessage.style.display = 'none';
+      } else {
+          noResultsMessage.style.display = 'block';
+      }
+  });
+  
+  document.getElementById('clear-filters').addEventListener('click', function () {
+      // Reset filter dropdowns and search bar
+      document.getElementById('location-filter').value = '';
+      document.getElementById('price-filter').value = '';
+      document.getElementById('name-search').value = '';
+  
+      // Show all house cards
+      const houseCards = document.querySelectorAll('.cardhouse');
+      houseCards.forEach(card => {
+          card.parentElement.style.display = 'block';
+      });
+  
+      // Hide the "no results" message
+      const noResultsMessage = document.getElementById('no-results-message');
+      noResultsMessage.style.display = 'none';
+  });
+  
+   </script>
+  
+
+
+
+
+
+
+{% endblock %}
