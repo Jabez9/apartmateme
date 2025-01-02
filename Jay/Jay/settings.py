@@ -173,6 +173,11 @@ STATIC_URL = 'static/'
 # Add this line to set the STATIC_ROOT directory
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+
 #whitenoise for serving static files
 STATIC_FILE_STORAGE='whitenoise.storage.CompressedManifestStaticFilesStorage'
 
