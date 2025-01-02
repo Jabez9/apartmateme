@@ -1,0 +1,12 @@
+<body>
+    <h1>Donation To ApartmateMe</h1>
+
+    <form action="stk_push/" method="post">
+
+    {% csrf_token %}
+        <input type="text" name="phone_number" placeholder="Enter number: 254..."> <br><br>
+        <input type="number" name="amount"  placeholder="Enter amount to donate" ><br><br>
+        <input type="submit" value="submit">
+
+    </form>
+</body>
