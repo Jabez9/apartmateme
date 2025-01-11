@@ -11,6 +11,7 @@
             <li class="breadcrumb-item active text-danger">Add House</li>
         </ol>
     </div>
+</div>
 <!-- Header End -->
 
 <!-- Initialize WOW.js -->
@@ -18,83 +19,96 @@
     new WOW().init(); // Initialize WOW.js
 </script>
 
+<!-- Add House Form -->
 <div class="container py-5" style="background-color: aliceblue; border-radius: 10px;">
-
     <div class="card shadow p-4">
         <h2 class="text-center mb-4" style="color: crimson;">Add House</h2>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.as_p }}
-        
-            <!-- Row for Premises Name and Type -->
+    
+            <!-- Premises Name and Type -->
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label for="id_name" class="form-label">Premises Name</label>
-                    {{ house_form.name|add_class:"form-control" }}
+                    <label for="id_name" class="form-label"><strong>Premises Name</strong></label>
+                    {{ house_form.name }}
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="id_type" class="form-label">Type</label>
-                    {{ house_form.type|add_class:"form-control" }}
+                    <label for="id_type" class="form-label"><strong>Type (Select at least one)</strong></label>
+                    {{ house_form.type }}
                 </div>
             </div>
-        
-            <!-- Row for Location and Status -->
+    
+            <!-- Status, Location, and Coordinates -->
             <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="id_location" class="form-label">Location</label>
-                    {{ house_form.location|add_class:"form-control" }}
+                <div class="col-md-4 mb-3">
+                    <label for="id_status" class="form-label"><strong>Status</strong></label>
+                    {{ house_form.status }}
                 </div>
-                <div class="col-md-6 mb-3">
-                    <label for="id_status" class="form-label">Status</label>
-                    {{ house_form.status|add_class:"form-control" }}
+                <div class="col-md-4 mb-3">
+                    <label for="id_location" class="form-label"><strong>Location</strong></label>
+                    {{ house_form.location }}
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="id_coordinates" class="form-label"><strong>Coordinates</strong></label>
+                    {{ house_form.coordinates }}
                 </div>
             </div>
-        
-            <!-- Hidden Fields for Landlord and Date Added -->
-            {{ house_form.landlord.as_hidden }}
-            {{ house_form.dateadded.as_hidden }}
-        
-            <!-- Main Image Section -->
+    
+            <!-- Main Image -->
             <div class="mb-3">
-                <label for="id_main_image" class="form-label">Main Image</label>
+                <label for="id_main_image" class="form-label"><strong>Main Image</strong></label>
                 {{ house_form.main_image }}
             </div>
-        
-            <!-- Section for Additional Images -->
+    
+            <!-- Additional Images -->
             <div class="mb-3">
-                <label for="id_images" class="form-label">Additional Images</label>
-                <input type="file" name="images" id="id_images" class="form-control" multiple>
+                <label for="id_additional_images" class="form-label"><strong>Additional Images</strong></label>
+                <input type="file" id="id_additional_images" name="additional_images" class="form-control" multiple>
                 <small class="form-text text-muted">You can upload multiple images for this property.</small>
             </div>
-        
-            <!-- Description Field -->
+    
+            <!-- Rent -->
+            <div class="mb-3" aria-labelledby="rentDropdown">
+                <label for="id_rent" class="form-label"><strong>Rent (Select at least one)</strong></label>
+                {{ house_form.rent }}
+            </div>
+    
+            <!-- Description -->
             <div class="mb-3">
-                <label for="id_description" class="form-label">Description</label>
-                <textarea name="description" id="id_description" class="form-control" rows="4" required></textarea>
+                <label for="id_description" class="form-label"><strong>Description</strong></label>
+                {{ house_form.description }}
             </div>
-        
-            <!-- Price Range Field -->
-            <!-- <div class="mb-3">
-                <label for="id_price_ranges" class="form-label">Price Range</label>
-                <select name="price_ranges" id="id_price_ranges" class="form-control" multiple>
-                    {% for price_range in price_ranges %}
-                        <option value="{{ price_range.id }}" {% if price_range in house.price_ranges.all %}selected{% endif %}>
-                            {{ price_range }}
-                        </option>
-                    {% endfor %}
-                </select>
-                <small class="form-text text-muted">Select one or more price ranges for the property.</small>
+    
+            <!-- Pros -->
+            <div class="mb-3">
+                <label for="id_pros" class="form-label"><strong>Pros</strong></label>
+                {{ house_form.pros }}
             </div>
-         -->
+    
+            <!-- Agent Information -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="id_agent_name" class="form-label"><strong>Agent Name</strong></label>
+                    {{ house_form.agent_name }}
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="id_agent_phone" class="form-label"><strong>Agent Phone Number</strong></label>
+                    {{ house_form.agent_phone }}
+                </div>
+            </div>
+    
             <!-- Submit Button -->
-            <div class="text-center">
-                <button type="submit" class="btn btn-success btn-lg">Add House</button>
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
+            
         </form>
     </div>
+    
 </div>
 
-</div>
+
+
 <section>
 </section>
 

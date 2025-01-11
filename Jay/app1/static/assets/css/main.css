@@ -2015,6 +2015,16 @@ input[type="submit"]:hover {
 }
 
 
+/* A scrollable checkbox for the Rent */
+.scrollable-checkbox {
+  max-height: 150px; /* Adjust the height as needed */
+  overflow-y: auto;
+  border: 1px solid #ccc; /* Optional: Add a border */
+  padding: 5px; /* Optional: Add some padding */
+  background-color: #f9f9f9; /* Optional: Set a background color */
+}
+
+
 /* END */
 
 

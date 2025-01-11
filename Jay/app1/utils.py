@@ -1,28 +1,30 @@
-# utils.py
-
 import os
+# from .models import House, HouseImage
 
-# def house_image_upload_to(instance, filename):
-#     # Create a folder for each house using its name (you can also use instance.house.name or instance.house.id)
-#     house_folder = instance.house.name.replace(" ", "_")  # Replace spaces with underscores
-#     return os.path.join('houses', house_folder, filename)
-
-
-
-# def house_main_image_upload_to(instance, filename):
-#     # Create a folder for each house using its name (you can also use instance.house.id)
-#     house_folder = instance.house.name.replace(" ", "_")  # Replace spaces with underscores
-#     return os.path.join('houses', house_folder, 'main', filename)
-
+def house_main_image_upload_to(instance, filename):
+    from .models import House
+    # Handle upload for House instances
+    if isinstance(instance, House):
+        house_folder = instance.name.replace(" ", "_")
+        return os.path.join('houses', house_folder, 'main', filename)
+    else:
+        raise ValueError(f"Expected instance of House, but got {type(instance)}")
 
 
 def house_image_upload_to(instance, filename):
-    # Use instance.name directly as it's already a House object
-    house_folder = instance.name.replace(" ", "_")  # Replace spaces with underscores
-    return os.path.join('houses', house_folder, filename)
+    from .models import HouseImage
+    # Handle upload for HouseImage instances
+    if isinstance(instance, HouseImage):
+        house = instance.house  # Access the related House object
+        house_folder = house.name.replace(" ", "_")  # Use the house name
+        return os.path.join('houses', house_folder, 'additional', filename)
+    else:
+        raise ValueError(f"Expected instance of HouseImage, but got {type(instance)}")
 
+#for this case , theres no need to import the house model to prevent circular import when used in models.py if in another file, the house has to be imported there
+def add_images_to_house(house_id, image_files):
+    from.models import House, HouseImage
+    house = House.objects.get(pk=house_id)
+    for image in image_files:
+        HouseImage.objects.create(house=house, image=image)
 
-def house_main_image_upload_to(instance, filename):
-    # Use instance.name directly
-    house_folder = instance.name.replace(" ", "_")  # Replace spaces with underscores
-    return os.path.join('houses', house_folder, 'main', filename)

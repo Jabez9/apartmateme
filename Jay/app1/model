@@ -1,24 +1,16 @@
-from django.db import models
-from django.db.models import JSONField
-from django.utils import timezone
-from .utils import house_main_image_upload_to, house_image_upload_to
-import os
-from django.conf import settings
+class Rent(models.Model):
+    rent = models.IntegerField(unique=True)
+
+    def __str__(self):
+        return str(self.amount)
 
 
-class Landlord(models.Model):
-    name = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=16)
-    repeat_pass = models.CharField(max_length=16)
-
-    def save(self, *args, **kwargs):
-        if self.password != self.repeat_pass:
-            raise ValueError("Passwords do not match!")
-        super().save(*args, **kwargs)
+class Type(models.Model):
+    type = models.CharField(max_length=50, unique=True)
 
     def __str__(self):
         return self.name
+
 
 
 class House(models.Model):
@@ -68,9 +60,15 @@ class House(models.Model):
         help_text="Upload the main image for the house",
     )
     # rent = models.CharField(max_length=30, choices=RENT_CHOICES)
-    # type = models.CharField(max_length=30, choices=TYPE_CHOICES)
-    type = JSONField()
-    rent = JSONField()
+    rent = models.CharField(
+        max_length=255, 
+        choices=RENT_CHOICES, 
+        blank=True,
+        help_text="Comma-separated list of selected rent amounts"
+    )
+    type = models.CharField(max_length=255, choices=TYPE_CHOICES,
+    blank=True,
+    help_text="Comma-separated list of selected types")
     agent_name = models.CharField(max_length=100)
     agent_phone = models.CharField(max_length=20)
     description = models.TextField(blank=True, null=True)
@@ -80,13 +78,14 @@ class House(models.Model):
         ordering = ['-dateadded']
 
     def save(self, *args, **kwargs):
-        if self.pk:  # Only handle updates for existing records
+        if self.pk:  # Handle updates for existing records
             old_instance = House.objects.get(pk=self.pk)
+
+            # Rename folder and move files if name changes
             if old_instance.name != self.name:
                 old_folder = os.path.join(settings.MEDIA_ROOT, 'houses', old_instance.name)
                 new_folder = os.path.join(settings.MEDIA_ROOT, 'houses', self.name)
 
-                # Rename folder if it exists
                 if os.path.exists(old_folder):
                     os.rename(old_folder, new_folder)
 
@@ -100,34 +99,29 @@ class House(models.Model):
                         f"houses/{old_instance.name}/", f"houses/{self.name}/"
                     )
 
-        super().save(*args, **kwargs)
-
-    def __str__(self):
-        return f"{self.name} - {self.location} ({self.type}, {self.status}, {self.rent})"
-
-
-
-class HouseImage(models.Model):
-    house = models.ForeignKey(
-        House, related_name='images', on_delete=models.CASCADE
-    )
-    image = models.ImageField(upload_to=house_image_upload_to)
-    description = models.TextField(blank=True, null=True)
-
-    def save(self, *args, **kwargs):
-        # If updating the image, delete the old one
-        if self.pk:
-            old_instance = HouseImage.objects.get(pk=self.pk)
-            if old_instance.image != self.image:
-                old_instance.image.delete(save=False)
+            # Delete old main image if it's replaced
+            if old_instance.main_image != self.main_image and old_instance.main_image:
+                old_instance.main_image.delete(save=False)
 
         super().save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
-        # Delete the image file when the instance is deleted
-        if self.image:
-            self.image.delete(save=False)
+        # Delete folder and its contents when the house is deleted
+        house_folder = os.path.join(settings.MEDIA_ROOT, 'houses', self.name)
+        if os.path.exists(house_folder):
+            for root, dirs, files in os.walk(house_folder, topdown=False):
+                for file in files:
+                    os.remove(os.path.join(root, file))
+                for dir in dirs:
+                    os.rmdir(os.path.join(root, dir))
+            os.rmdir(house_folder)
+
+        # Delete the main image
+        if self.main_image:
+            self.main_image.delete(save=False)
+
         super().delete(*args, **kwargs)
 
     def __str__(self):
-        return f"Image for {self.house.name}"
+        return f"{self.name} - {self.location} ({self.type}, {self.status}, {self.rent})"
+    

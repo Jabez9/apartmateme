@@ -96,92 +96,68 @@
 </div>
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
+        <!-- Loop through houses that are bedsitters -->
+        {% for house in houses %}
+        <div class="col">
+            <div class="cardhouse h-100">
+                <div class="bedsitter-image-container position-relative">
+                    <!-- Status Button -->
+                    <button class="btn btn-sm btn-success position-absolute top-0 start-0 m-2" style="z-index: 10;">
+                        {{ house.status }}
+                    </button>
+                    <img src="{{ house.main_image.url }}" class="card-img-top" alt="{{ house.name }}" />
+                </div>
+                <div class="card-footer">
+                    <h5 class="card-title">{{ house.name }}</h5>
+                    <h6>Location: {{ house.location }}</h6>
+                    <h6>KSh {{ house.rent }}</h6>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bedsitter{{ house.id }}">Details</button>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Modal for Card -->
+        <div class="modal fade" id="bedsitter{{ house.id }}" tabindex="-1" aria-labelledby="detailsModal{{ house.id }}Label" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="detailsModal{{ house.id }}Label">House Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-center mt-3">
+                            <!-- Call Agent Button -->
+                            <a href="tel:+254791751475" class="btn btn-success">Call Our Agent</a>
+                        </div>
+                        <h6>Location: {{ house.location }}</h6>
+                        <p>Description: {{ house.description }}</p>
+                        <br>
+                        <p>Pros:
+                        <ul>
+                            <li>Security.</li>
+                            <li>24/7 Water Supply.</li>
+                        </ul>
+                        </p>
+                        <h6>Gallery:</h6>
+                        <div class="row">
+                            {% for image in house.images.all %}
+                                <div class="col-md-4">
+                                    <img src="{{ image.image.url }}" alt="House Image" class="img-fluid" />
+                                </div>
+                            {% endfor %}
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
 
-  
-<!--Kings Serentity-->
-<div class="col">
-    <div class="cardhouse h-100">
-      <div class="bedsitter-image-container position-relative">
-        <!-- Status Button -->
-        <button class="btn btn-sm btn-success position-absolute top-0 start-0 m-2" style="z-index: 10;">Full</button>
-        <img src="https://lh3.googleusercontent.com/p/AF1QipMKWCRBiIUQnPI9oJS0mwZetz3RYue-js8jkiAZ=s680-w680-h510" class="card-img-top" alt="Skyscrapers" />
-      </div>
-      <div class="card-footer"> 
-        <!-- name  -->
-          <h5 class="card-title">Kings Serenity</h5>
-
-          <h6>Location: Tumaini</h6>
-          <!-- Price -->
-          <h6>KSh 20000</h6>
-          <h6>Ksh 21000</h6>
-          <h6>Ksh 23000</h6>
-          <h6>Ksh 24000</h6>
-               
-
-          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kingsserenity">Details</button>
-          <!-- target is bedsitter id below  -->
-       
       </div>
     </div>
   </div>
-
-  <!-- Modal for bedsitter x-->
-   <!-- id is no of bedsitter  -->
- <div class="modal fade" id="kingsserenity" tabindex="-1" aria-labelledby="detailsModal1Label" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="detailsModal1Label">House Details</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <!-- location  -->
-          <h6>Location: </h6>
-          <p>Description: </p>
-          <br>
-          <p>Pros:
-            <ul>
-                <li>Security.</li>
-                <li>Backup Water Supply.</li>
-                <li>Hospital.</li>
-                <li>Ample Parking.</li>
-                <li></li>
-            </ul> </p>
-          <h6>Gallery:</h6>
-          <div class="row">
-            <p>Here are some of the breathtaking views from Kings Serenity</p>
-            <div class="col-md-4">
-                
-              <img src="{% static 'assets/images/onebd/serenity/serenity1.jpeg' %}" alt="House Image 1" class="img-fluid" />
-            </div>
-            <div class="col-md-4">
-              <img src="{% static 'assets/images/onebd/serenity/serenity2.jpeg' %}" alt="House Image 2" class="img-fluid" />
-            </div>
-            <div class="col-md-4">
-              <img src="{% static 'assets/images/onebd/serenity/serenity3.jpeg' %}" alt="House Image 3" class="img-fluid" />
-              
-            </div>
-            <div class="col-md-4">
-                <img src="{% static 'assets/images/onebd/serenity/serenity4.jpeg' %}" alt="House Image 4" class="img-fluid" />
-                
-              </div>
-              <div class="col-md-4">
-                <img src="{% static 'assets/images/onebd/serenity/serenity5.jpeg' %}" alt="House Image 5" class="img-fluid" />
-                
-              </div>
-              <div class="col-md-4">
-                <img src="{% static 'assets/images/onebd/serenity/serenity6.jpeg' %}" alt="House Image 6" class="img-fluid" />
-                
-              </div>
-          </div>
-        </div>
-      </div>
-    </div> 
-  </div> 
-
-
-  </div>
-
   </section>
 
 

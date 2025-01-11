@@ -1,5 +1,5 @@
 from django import forms
-from .models import Landlord
+from app1.models import House
 
 class ContactForm(forms.Form):
     name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
@@ -24,110 +24,78 @@ class ContactForm(forms.Form):
         'required': True,
     }))
 
-#handling form for multiple images
-from .models import House, HouseImage, PriceRange
-
-# class HouseForm(forms.ModelForm):
-#     class Meta:
-#         model = House
-#         fields = ['landlord', 'name', 'type', 'status', 'location', 'dateadded']
-
-#     def __init__(self, *args, **kwargs):
-#         # Extract the landlord instance passed to the form
-#         self.landlord = kwargs.pop('landlord', None)  
-#         super().__init__(*args, **kwargs)
-        
-#         if self.landlord:
-#             # Set the landlord field to be pre-filled with the logged-in landlord
-#             self.fields['landlord'].initial = self.landlord
-#             # Make the field read-only (uneditable)
-#             # self.fields['landlord'].widget = forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'})
-
-#             self.fields['landlord'].widget = forms.HiddenInput()  # Hides the field
-
-#             # Optionally, you can disable the field if you want to prevent interaction
-#             self.fields['landlord'].disabled = True
-
-#         # Hide the 'dateadded' field using HiddenInput widget
-#         self.fields['dateadded'].widget = forms.HiddenInput()
-#         self.fields['dateadded'].disabled = True  # Optionally disable the field if you want to prevent interaction
-
-
-
-#     def clean_landlord(self):
-#         landlord = self.cleaned_data.get('landlord')
-#         if self.landlord and landlord != self.landlord:
-#             raise forms.ValidationError("You can only create houses for your own account.")
-#         return landlord
-#     #above fxn checks if the landlord matches the one logged in 
-
-
 class HouseForm(forms.ModelForm):
-    class Meta:
-        model = House
-        fields = ['landlord', 'name', 'type', 'status', 'location', 'dateadded', 'price_ranges', 'main_image']
+    # type = forms.MultipleChoiceField(
+    #     choices=House.TYPE_CHOICES,
+    #     required=True,
+    #     widget=forms.CheckboxSelectMultiple(attrs={'class': 'scrollable-checkbox'}),
+    #     label="Type (Select at least one)"
+    # )
 
-    price_ranges= forms.DecimalField(
-        max_digits=10, 
-        decimal_places=2, 
+    # rent = forms.MultipleChoiceField(
+    #     choices=House.RENT_CHOICES,
+    #     required=True,
+    #     widget=forms.CheckboxSelectMultiple(attrs={'class': 'scrollable-checkbox'}),
+    #     label="Rent (Select at least one)"
+    # )
+    type = forms.MultipleChoiceField(
+        choices=House.TYPE_CHOICES,
         required=True,
-        widget=forms.NumberInput(attrs={'class': 'form-control'}),
-        label="Price Range (e.g. 7000.00)"
+        widget=forms.CheckboxSelectMultiple(attrs={'class': 'scrollable-checkbox'}),
+        label="Type (Select at least one)"
     )
 
+    rent = forms.MultipleChoiceField(
+        choices=House.RENT_CHOICES,
+        required=True,
+        widget=forms.CheckboxSelectMultiple(attrs={'class': 'scrollable-checkbox'}),
+        label="Rent (Select at least one)"
+    )
+
+    class Meta:
+        model = House
+        fields = [
+            'landlord', 'name', 'type', 'status', 'location', 'coordinates', 'main_image','dateadded',
+             'rent', 'agent_name', 'agent_phone', 'description', 'pros'
+        ]
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Premises Name'}),
+            'status': forms.Select(attrs={'class': 'form-control'}),
+            'coordinates': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Coordinates'}),
+            'main_image': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+            'agent_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Agent Name'}),
+            'agent_phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Agent Phone Number'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
+            'pros': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+        }
+
+
+
     def __init__(self, *args, **kwargs):
-        # Extract the landlord instance passed to the form
         self.landlord = kwargs.pop('landlord', None)
         super().__init__(*args, **kwargs)
-        
+
         if self.landlord:
-            # Set the landlord field to be pre-filled with the logged-in landlord
             self.fields['landlord'].initial = self.landlord
-            # Make the field read-only or hidden as needed
-            self.fields['landlord'].widget = forms.HiddenInput()  # Hides the field
-            self.fields['landlord'].disabled = True  # Optionally, you can disable the field
-
+            self.fields['landlord'].widget = forms.HiddenInput()
+            self.fields['landlord'].disabled = True
         else:
-            raise forms.ValidationError("Landlord not specified.")  # Ensure 'landlord' is provided
+            raise forms.ValidationError("Landlord not specified.")
 
-        # Hide and disable the 'dateadded' field (pre-fill with the current date)
         self.fields['dateadded'].widget = forms.HiddenInput()
-        self.fields['dateadded'].disabled = True  # Optionally disable the field to prevent interaction
+        self.fields['dateadded'].disabled = True
+
+        # Mark all fields as required except for 'coordinates'
+        for field_name in self.fields:
+            if field_name != 'coordinates':
+                self.fields[field_name].required = True
+            else:
+                self.fields[field_name].required = False
 
     def clean_landlord(self):
         landlord = self.cleaned_data.get('landlord')
-        # Check that the landlord matches the logged-in user
         if self.landlord and landlord != self.landlord:
             raise forms.ValidationError("You can only create houses for your own account.")
         return landlord
 
-class HouseImageForm(forms.ModelForm):
-    images = forms.ImageField(
-        widget=forms.ClearableFileInput(attrs={'multiple': True}),
-        required=True
-    )
-    description = forms.CharField(widget=forms.Textarea, required=False)
-    
-    def clean_images(self):
-        images = self.files.getlist('images')
-        if len(images) > 5:
-            raise forms.ValidationError("You can upload up to 5 images only.")
-        return images
 
-    class Meta:
-        model = HouseImage
-        # fields = ['image', 'description']
-        fields = ['description']  # 'images' is handled separately and not part of the model fields
-
-
-# EDITTING A LANDLORD
-class LandlordEditForm(forms.ModelForm):
-    class Meta:
-        model = Landlord
-        fields = ['email', 'password']
-
-#ADDING A LANDLORD
-class LandlordForm(forms.ModelForm):
-    class Meta:
-        model = Landlord
-        fields = ['name', 'email', 'password', 'repeat_pass']
