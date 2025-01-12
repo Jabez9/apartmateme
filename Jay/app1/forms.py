@@ -25,19 +25,6 @@ class ContactForm(forms.Form):
     }))
 
 class HouseForm(forms.ModelForm):
-    # type = forms.MultipleChoiceField(
-    #     choices=House.TYPE_CHOICES,
-    #     required=True,
-    #     widget=forms.CheckboxSelectMultiple(attrs={'class': 'scrollable-checkbox'}),
-    #     label="Type (Select at least one)"
-    # )
-
-    # rent = forms.MultipleChoiceField(
-    #     choices=House.RENT_CHOICES,
-    #     required=True,
-    #     widget=forms.CheckboxSelectMultiple(attrs={'class': 'scrollable-checkbox'}),
-    #     label="Rent (Select at least one)"
-    # )
     type = forms.MultipleChoiceField(
         choices=House.TYPE_CHOICES,
         required=True,

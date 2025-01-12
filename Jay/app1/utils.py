@@ -1,6 +1,4 @@
 import os
-# from .models import House, HouseImage
-
 def house_main_image_upload_to(instance, filename):
     from .models import House
     # Handle upload for House instances

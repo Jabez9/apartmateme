@@ -50,45 +50,7 @@
 
 
 <body class="index-page" style="background-color: rgb(229, 238, 245);">
-<!-- 
-<section style="background-color: rgb(229, 238, 245);">
 
-     <div class="container-fluid ">
-                <div class="container text-center py-5" style="max-width: 900px;">
-                    <h4 class=" display-4 mb-4 wow animate__animated animate__fadeInDown" data-wow-delay="0.1s" style="font-weight: bolder;"> List Of Houses</h4>
-                </div>
-            </div>
-
-<table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Status</th>
-            <th>Location</th>
-            <th>Owner</th>
-            <th>Date Added</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for house in houses %}
-            <tr>
-                <td>{{ house.name }}</td>
-                <td>{{ house.type }}</td>
-                <td>{{ house.status }}</td>
-                <td>{{ house.location }}</td>
-                <td>{{ house.landlord.name }}</td>
-                <td>{{ house.dateadded }}</td>
-                <td><a href="{% url 'house_details' house.id %}">View Details</a></td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
-
-</div>
-</section>-->
 <section style="background-color: rgb(229, 238, 245);">
 
     <div class="container-fluid ">
@@ -97,38 +59,6 @@
         </div>
     </div>
 
-    <!-- <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Status</th>
-                <th>Location</th>
-                <th>Owner</th>
-                <th>Rent</th>
-                <th>Date Added</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for house in houses %}
-                <tr>
-                    <td>{{ house.name }}</td>
-                    <td>{{ house.type }}</td>
-                    <td>{{ house.status }}</td>
-                    <td>{{ house.location }}</td>
-                    <td>{{ house.landlord.name }}</td>
-                    <td>{{ house.rent }}</td>
-                    <td>{{ house.dateadded }}</td>
-                    <td>
-                        <a href="{% url 'house_details' house.id %}">View Details</a> | 
-                        <a href="{% url 'edit_house' house.id %}">Edit</a> | 
-                        <a href="{% url 'delete_house' house.id %}">Delete</a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table> -->
     <table>
         <thead>
             <tr>
@@ -137,6 +67,8 @@
                 <th>Status</th>
                 <th>Location</th>
                 <th>Owner</th>
+                <th>Agent</th>
+                <th>Agent Phone</th>
                 <th>Rent</th>
                 <th>Date Added</th>
                 <th>Actions</th>
@@ -167,6 +99,8 @@
                             No rent information available
                         {% endif %}
                     </td>
+                    <td>{{ agent_name }}</td>
+                    <td>{{ agent_phone }}</td>
                     <td>{{ house.dateadded }}</td>
                     <td>
                         <a href="{% url 'house_details' house.id %}">View Details</a> | 

@@ -65,33 +65,7 @@
 
                 </div>
             </div>
-        <!-- <section>
-           
-                <div class="card" style="padding: auto; text-align: center;">
-                    <p><strong>Type:</strong> {{ house.type }}</p>
-                    <p><strong>Status:</strong> {{ house.status }}</p>
-                    <p><strong>Location:</strong> {{ house.location }}</p>
-                    <p><strong>Owner:</strong> {{ house.landlord.name }}</p>
-                    <p><strong>Date Added:</strong> {{ house.dateadded }}</p>
-                
-                
-                <h3>Images</h3>
-
-                </div>
-
-            <div id="image-card" class="{% if house.images.count == 1 %}single-image{% else %}multiple-images{% endif %}">
-                {% for image in house.images.all %}
-                    <img src="{{ image.image.url }}" alt="{{ image.description }}" style="width: 300px; margin: 10px;">
-                {% empty %}
-                    <p>No images available.</p>
-                {% endfor %}
-            </div>
-            
-           
-            
-        </section> -->
-        
-        <section style="background-color: rgb(229, 238, 245);">
+    <section style="background-color: rgb(229, 238, 245);">
             <div class="container-fluid">
                 <div class="container text-center py-5" style="max-width: 900px;">
                     <h4 class="display-4 mb-4 wow animate__animated animate__fadeInDown" data-wow-delay="0.1s" style="font-weight: bolder;">House Details</h4>
@@ -106,11 +80,11 @@
                 <p>Owner: {{ house.landlord.name }}</p>
                 <p>Date Added: {{ house.dateadded }}</p>
         
-                <!-- Display Price Range -->
-                <p>Price Range:</p>
+                <!-- Display Rent -->
+                <p>Rent:</p>
                 <ul>
-                    {% for price in price_ranges %}
-                        <li>{{ price }}</li>
+                    {% for rent_item in rent %}
+                        <li>Ksh {{ rent_item }}</li>
                     {% endfor %}
                 </ul>
         
@@ -129,7 +103,6 @@
         
                 <a href="{% url 'edit_house' house.id %}" class="btn btn-warning">Edit House</a>
                 <a href="{% url 'delete_house' house.id %}" class="btn btn-danger">Delete House</a>
-            </div>
         </section>
         
 

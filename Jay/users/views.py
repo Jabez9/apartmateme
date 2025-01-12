@@ -3,7 +3,6 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib import messages
 from app1.models  import  Landlord, House
 from django.utils.safestring import mark_safe
-from app1.forms import HouseForm
 
 
 #REGISTER FUNCTION

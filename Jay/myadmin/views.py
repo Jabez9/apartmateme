@@ -1,14 +1,12 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from app1.models  import  Landlord
 from django.http import HttpResponseForbidden
-from app1.models import House,HouseImage
+from app1.models import House
 from .forms import LandlordEditForm
 from .forms import LandlordForm
 from django.contrib.auth.decorators import login_required
 from app1.views import *
 
-
-# Create your views here.
 
 # LIST OF HOUSES
 def house_list(request):

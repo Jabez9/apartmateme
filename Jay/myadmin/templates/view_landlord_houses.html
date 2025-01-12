@@ -69,7 +69,9 @@
                                 <th>Apartment Name</th>
                                 <th>Location</th>
                                 <th>Status</th>
-                                <th>Price Range</th>
+                                <th>Rent</th>
+                                <th>Agent</th>
+                                <th>Agent Phone</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -78,7 +80,9 @@
                                     <td>{{ house.name }}</td>
                                     <td>{{ house.location }}</td>
                                     <td>{{ house.status }}</td>
-                                    <td>{{ house.price_range }}</td>
+                                    <td>{{ house.rent }}</td>
+                                    <td>{{ house.agent_name }}</td>
+                                    <td>{{ house.agent_phone }}</td>
                                 </tr>
                             {% empty %}
                                 <tr>
@@ -95,9 +99,8 @@
     <div class="text-center mt-4">
         <a href="{% url 'landlords' %}" class="btn btn-secondary">Back to Landlords List</a>
     </div>
-            </div>
+    </div>
 
-     
     </section>
     
 </body>
