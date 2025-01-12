@@ -127,7 +127,7 @@ def contact(request):
                 
                 # Prepare the email content
                 email_subject = f"New Contact Me Form submission: {subject}"
-                email_message = f"Name: {name}\nEmail: {email}\nPhone: {phone}\nSubject: {subject}\nMessage: {message}"
+                email_message = f"Name: {name}\nEmail: {email}\nSubject: {subject}\nMessage: {message}"
                 
                 # Send email using Mailgun domain
                 send_mail(
