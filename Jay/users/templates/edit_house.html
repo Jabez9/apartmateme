@@ -47,18 +47,19 @@
                 </select>
             </div>
 
-            <!-- Rent field with single select -->
+            <!-- Rent field with multiple select -->
             <div class="form-group" style="width: 100%; margin-bottom: 15px;">
                 <label for="rent" style="display: block; margin-bottom: 5px;">Rent:</label>
                 {% for value, label in house.RENT_CHOICES %}
                     <div style="margin-bottom: 10px;">
                         <label>
-                            <input type="checkbox" name="rent" value="{{ value }}" 
-                                {% if value in house.rent %}checked{% endif %}> {{ label }}
+                            <input type="checkbox" name="rent" value="{{ value }}"
+                                {% if value in house.rent.all %}checked{% endif %}> {{ label }}
                         </label>
                     </div>
                 {% endfor %}
             </div>
+
             
 
             <!-- Description field -->

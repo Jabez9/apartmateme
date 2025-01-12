@@ -157,16 +157,39 @@ def landlorddashboard(request):
 
 
 ## LANDLORD  EDITTING A HOUSE
+# def edit_house(request, house_id):
+#     house = get_object_or_404(House, id=house_id)
+
+#     if request.method == 'POST':
+#         house.name = request.POST.get('name')
+#         house.status = request.POST.get('status')
+
+#         # Handle the image update if a new image is uploaded
+#         if request.FILES.get('main_image'):
+#             house.main_image = request.FILES['main_image']
+
+#         house.save()
+
+#         messages.success(request, "House details updated successfully.")
+#         return redirect('landlorddashboard')  # Adjust to your redirect URL
+
+#     return render(request, 'edit_house.html', {'house': house})
+
 def edit_house(request, house_id):
     house = get_object_or_404(House, id=house_id)
 
     if request.method == 'POST':
+        # Update basic fields
         house.name = request.POST.get('name')
         house.status = request.POST.get('status')
 
         # Handle the image update if a new image is uploaded
         if request.FILES.get('main_image'):
             house.main_image = request.FILES['main_image']
+
+        # Handle the 'rent' field (MultipleChoiceField)
+        selected_rents = request.POST.getlist('rent')  # Get a list of selected rents
+        house.rent.set(selected_rents)  # Update the 'rent' field (assuming it's a ManyToManyField)
 
         house.save()
 

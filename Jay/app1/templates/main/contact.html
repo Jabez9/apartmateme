@@ -175,31 +175,33 @@
         </script> -->
         
         <script>
-          document.getElementById('contactForm').addEventListener('submit', function(event) {
-              event.preventDefault();  // Prevent default form submission
-          
-              let form = new FormData(this);
-          
-              fetch("{% url 'contact' %}", {
-                  method: 'POST',
-                  body: form,
-                  headers: {
-                      'X-Requested-With': 'XMLHttpRequest'
-                  }
-              })
-              .then(response => response.json())
-              .then(data => {
-                  if (data.success) {
-                      alert(data.message);  // Show success message
-                      document.getElementById('contactForm').reset();  // Reset the form
-                  } else {
-                      alert(data.message);  // Show error message
-                  }
-              })
-              .catch(error => {
-                  alert("An error occurred. Please try again.");
-              });
-          });
+        $(document).ready(function() {
+        $('#contactForm').submit(function(event) {
+        event.preventDefault();  // Prevent default form submission
+
+        var formData = new FormData(this);
+
+        $.ajax({
+            type: "POST",
+            url: "",  // The same URL as the form's action
+            data: formData,
+            processData: false,  // Don't process the data
+            contentType: false,  // Let jQuery set the content type
+            success: function(response) {
+                if (response.success) {
+                    alert(response.message);  // Show success message
+                    $('#contactForm')[0].reset();  // Reset form fields
+                } else {
+                    alert(response.message);  // Show error message
+                }
+            },
+            error: function(xhr, status, error) {
+                alert("An error occurred while sending your message. Please try again.");
+            }
+        });
+    });
+});
+
           </script>     
         
          

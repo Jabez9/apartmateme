@@ -59,7 +59,7 @@ def onebd(request):
 
 
 
-def contact(request):
+# def contact(request):
     # if request.method == 'POST':
     #     form = ContactForm(request.POST)
     #     if form.is_valid():
@@ -110,8 +110,9 @@ def contact(request):
     #     form = ContactForm()
 
     # return render(request, 'main/contact.html', {'form': form})
+def contact(request):
     if request.method == 'POST' and request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-        form = ContactForm(request.POST)
+        form = ContactForm(request.POST)  # Only handle the form data, no need for request.FILES
         
         if form.is_valid():
             # Get cleaned data
@@ -159,7 +160,6 @@ def contact(request):
         # If the request method is not POST or not AJAX
         form = ContactForm()
         return render(request, 'main/contact.html', {'form': form})
-
 
 
 #ADDING A HOUSE TO THE DATABASE
