@@ -133,9 +133,8 @@ def contact(request):
                 send_mail(
                     email_subject,
                     email_message,
-                    'apartmateme@jabezhuya.tech' , #my custom sender
-                    ['apartmateme@gmail.com',
-                    'mukoshijabez@yahoo.com'],  # Authorized recipient email
+                    'postmaster@sandboxf749d6cdf0394721a958fef436fa2caa.mailgun.org' , #my custom sender
+                    ['apartmateme@gmail.com',],  # Authorized recipient email
                     fail_silently=False,
                 )
                 
