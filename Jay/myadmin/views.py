@@ -19,7 +19,10 @@ def house_list(request):
 # HOUSE DETAILS
 def house_details(request,pk):
     house = get_object_or_404(House, pk=pk)
-    return render(request, 'house_details.html', {'house': house})
+
+    #fetch images from s3
+    image_url = get_s3_url(house.image.name)
+    return render(request, 'house_details.html', {'house': house, 'image_url': image_url})
 
 
 

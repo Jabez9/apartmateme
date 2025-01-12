@@ -11,6 +11,20 @@ from django.core.files import File
 from .utils import *
 from .credentials import MpesaAccessToken, MpesaPassword
 #have to go through to get the meaning of this
+import boto3
+from Jay import settings
+
+
+
+# Initializin a boto client
+s3_client = boto3.client('s3', 
+                         region_name=settings.AWS_S3_REGION_NAME, 
+                         aws_access_key_id=settings.AWS_ACCESS_KEY_ID, 
+                         aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY)
+
+def get_s3_url(filename):
+    bucket_name = 'apartmateme'
+    return f'https://{bucket_name}.s3.amazonaws.com/{filename}'
 
 
 # Create your views here.
@@ -96,6 +110,8 @@ def contact(request):
         form = ContactForm()
 
     return render(request, 'main/contact.html', {'form': form})
+
+
 
 
 #ADDING A HOUSE TO THE DATABASE
@@ -193,41 +209,41 @@ def edit_house(request, house_id):
 
 #THE ABOUT US DONATION
 def stk_push(request):
-    # if request.method == "POST":
-    #     phone = request.POST.get('phone_number')
-    #     amount = request.POST.get('amount')
+    if request.method == "POST":
+        phone = request.POST.get('phone_number')
+        amount = request.POST.get('amount')
 
-    #     access_token = MpesaAccessToken.validated_token
+        access_token = MpesaAccessToken.validated_token
 
-    #     api_url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
+        api_url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
 
-    #     headers = {"Authorization": "Bearer %s" % access_token}
+        headers = {"Authorization": "Bearer %s" % access_token}
 
-    #     payload = {   
-    #         "BusinessShortCode": MpesaPassword.shortcode,    
-    #         "Password": MpesaPassword.decoded_password,    
-    #         "Timestamp":MpesaPassword.timestamp,    
-    #         "TransactionType": "CustomerPayBillOnline",    
-    #         "Amount": amount,    
-    #         "PartyA":phone,    
-    #         "PartyB":MpesaPassword.shortcode,    
-    #         "PhoneNumber":phone,    
-    #         "CallBackURL": "https://sandbox.safaricom.co.ke/mpesa/",   
-    #         "AccountReference":"ApartmateMe", 
-    #         "TransactionDesc":"ApartmateMe"
-    #             }
-    #     # response = requests.post(api_url,json=payload,headers=headers)
-    #     try:
-    #         response = requests.post(api_url, json=payload, headers=headers)
-    #         if response.status_code == 200:
-    #             print("STK Push initiated successfully:", response.json())
-    #             return redirect("thanks")
-    #         else:
-    #             print("Failed to initiate STK Push:", response.status_code, response.text)
-    #             return redirect("error")
-    #     except Exception as e:
-    #         print("An error occurred:", str(e))
-    #         return redirect("error")
+        payload = {   
+            "BusinessShortCode": MpesaPassword.shortcode,    
+            "Password": MpesaPassword.decoded_password,    
+            "Timestamp":MpesaPassword.timestamp,    
+            "TransactionType": "CustomerPayBillOnline",    
+            "Amount": amount,    
+            "PartyA":phone,    
+            "PartyB":MpesaPassword.shortcode,    
+            "PhoneNumber":phone,    
+            "CallBackURL": "https://sandbox.safaricom.co.ke/mpesa/",   
+            "AccountReference":"ApartmateMe", 
+            "TransactionDesc":"ApartmateMe"
+                }
+        # response = requests.post(api_url,json=payload,headers=headers)
+        try:
+            response = requests.post(api_url, json=payload, headers=headers)
+            if response.status_code == 200:
+                print("STK Push initiated successfully:", response.json())
+                return redirect("thanks")
+            else:
+                print("Failed to initiate STK Push:", response.status_code, response.text)
+                return redirect("error")
+        except Exception as e:
+            print("An error occurred:", str(e))
+            return redirect("error")
 
     return redirect("thanks")
    #here i should have a fxn that after payment, redirect etc

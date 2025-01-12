@@ -74,7 +74,7 @@
             <li><a href="{% url 'about' %}" class="{% if request.path == '/about/' %}active{% endif %}">About</a></li>
             <li><a href="{% url 'services' %}" class="{% if request.path == '/services/' %}active{% endif %}">Services</a></li>
             <li><a href="{% url 'contact' %}" class="{% if request.path == '/contact/' %}active{% endif %}">Contact</a></li>
-            <li><a href="{% url 'login' %}" class="{% if request.path == '/register/' %}active{% endif %}">Login</a></li>
+{#            <li><a href="{% url 'login' %}" class="{% if request.path == '/register/' %}active{% endif %}">Login</a></li>#}
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
@@ -87,13 +87,13 @@
             <li><a href="{% url 'contact' %}" class="{% if request.path == '/contact/' %}active{% endif %}">Contact</a></li>
             
             <!-- Add this block for dynamic Login/Logout -->
-            {% if request.session.landlord_id %}
-                <!-- Show Logout if logged in -->
-                <li><a href="{% url 'logout' %}" class="{% if request.path == '/logout/' %}active{% endif %}">Logout</a></li>
-            {% else %}
-                <!-- Show Login if not logged in -->
-                <li><a href="{% url 'login' %}" class="{% if request.path == '/login/' %}active{% endif %}">Login</a></li>
-            {% endif %}
+{#            {% if request.session.landlord_id %}#}
+{#                <!-- Show Logout if logged in -->#}
+{#                <li><a href="{% url 'logout' %}" class="{% if request.path == '/logout/' %}active{% endif %}">Logout</a></li>#}
+{#            {% else %}#}
+{#                <!-- Show Login if not logged in -->#}
+{#                <li><a href="{% url 'login' %}" class="{% if request.path == '/login/' %}active{% endif %}">Login</a></li>#}
+{#            {% endif %}#}
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
     </nav>
