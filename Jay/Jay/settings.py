@@ -230,7 +230,7 @@ ADMIN_LOGIN_REDIRECT_URL = '/admin/'  # Redirect for default admin
 
 
 #Handling emails 
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'smtp.mailgun.com'
 EMAIL_USER =env('EMAIL_HOST_USER') 
 EMAIL_PASSWORD =env('EMAIL_HOST_PASSWORD') 
 EMAIL_PORT = 587

@@ -6,6 +6,45 @@ from django.utils.safestring import mark_safe
 
 
 #REGISTER FUNCTION
+# def register(request):
+#     if request.method == 'POST':
+#         name = request.POST.get('name')
+#         email = request.POST.get('email')
+#         password = request.POST.get('password')
+#         repeat_pass = request.POST.get('repeat_pass')
+
+#         # Validate form fields
+#         if not all([name, email, password, repeat_pass]):
+#             messages.error(request, "All fields are required.")
+#             return render(request, 'register.html')
+
+#         # Check if passwords match
+#         if password.strip() != repeat_pass.strip():
+#             messages.error(request, "Passwords do not match.")
+#             return render(request, 'register.html')
+
+#         # Check if email is already registered
+#         if Landlord.objects.filter(email=email).exists():
+#             messages.error(request, "Email is already registered.")
+#             return render(request, 'register.html')
+
+#         # Save the new landlord
+#         landlord = Landlord(
+#             name=name,
+#             email=email,
+#             password=password,  # Consider hashing the password using Django's built-in User model for better security.
+#         )
+#         landlord.save()
+
+#         # clear session data after successful registration
+#         request.session.flush()
+
+#         # Success message and redirect to Login
+#         messages.success(request, f"Welcome, {name}! Thank you for registering ApartmateME !")
+#                # Redirect to a new page to handle the countdown
+#         return render(request, 'login.html')
+#     else:
+#         return render(request, 'register.html')
 def register(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -19,7 +58,7 @@ def register(request):
             return render(request, 'register.html')
 
         # Check if passwords match
-        if password.strip() != repeat_pass.strip():
+        if password != repeat_pass:
             messages.error(request, "Passwords do not match.")
             return render(request, 'register.html')
 
@@ -42,10 +81,9 @@ def register(request):
         # Success message and redirect to Login
         messages.success(request, f"Welcome, {name}! Thank you for registering ApartmateME !")
                # Redirect to a new page to handle the countdown
-        return render(request, 'login.html')
+        return render(request, 'logn.html')
     else:
         return render(request, 'register.html')
-
 
 
 ## LOGIN FUNCTION

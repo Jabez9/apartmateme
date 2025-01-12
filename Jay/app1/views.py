@@ -60,8 +60,59 @@ def onebd(request):
 
 
 def contact(request):
-    if request.method == 'POST':
+    # if request.method == 'POST':
+    #     form = ContactForm(request.POST)
+    #     if form.is_valid():
+    #         # Get cleaned data
+    #         name = form.cleaned_data['name']
+    #         email = form.cleaned_data['email']
+    #         subject = form.cleaned_data['subject']
+    #         message = form.cleaned_data['message']
+
+    #         # Construct the email
+    #         full_subject = f"ApartmateMe Contact Form Submission: {subject}"
+    #         full_message = f"""
+    #         New contact form submission:
+
+    #         Name: {name}
+    #         Email: {email}
+    #         Subject: {subject}
+    #         Message: {message}
+    #         """
+
+    #         try:
+    #             # Send the email
+    #             send_mail(
+    #                 subject=full_subject,
+    #                 message=full_message,
+    #                 from_email=settings.EMAIL_HOST_USER,
+    #                 recipient_list=['apartmateme@gmail.com'], 
+    #                 fail_silently=True,
+    #             )
+    #             # If the request is AJAX, return a JSON response
+    #             if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+    #                 return JsonResponse({'success': True, 'message': "Your message has been sent successfully!"})
+    #             # Otherwise, redirect
+    #             messages.success(request, "Your message has been sent successfully!")
+    #             return redirect('contact')
+
+    #         except Exception as e:
+    #             error_message = f"Failed to send email: {e}"
+    #             if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+    #                 return JsonResponse({'success': False, 'message': error_message})
+    #             messages.error(request, error_message)
+    #     else:
+    #         error_message = "Please correct the errors in the form."
+    #         if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+    #             return JsonResponse({'success': False, 'message': error_message})
+    #         messages.error(request, error_message)
+    # else:
+    #     form = ContactForm()
+
+    # return render(request, 'main/contact.html', {'form': form})
+    if request.method == 'POST' and request.headers.get('X-Requested-With') == 'XMLHttpRequest':
         form = ContactForm(request.POST)
+        
         if form.is_valid():
             # Get cleaned data
             name = form.cleaned_data['name']
@@ -70,7 +121,7 @@ def contact(request):
             message = form.cleaned_data['message']
 
             # Construct the email
-            full_subject = f"Contact Form Submission: {subject}"
+            full_subject = f"ApartmateMe Contact Form Submission: {subject}"
             full_message = f"""
             New contact form submission:
 
@@ -89,28 +140,25 @@ def contact(request):
                     recipient_list=['apartmateme@gmail.com'], 
                     fail_silently=True,
                 )
-                # If the request is AJAX, return a JSON response
-                if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-                    return JsonResponse({'success': True, 'message': "Your message has been sent successfully!"})
-                # Otherwise, redirect
-                messages.success(request, "Your message has been sent successfully!")
-                return redirect('contact')
+                # Return success response
+                return JsonResponse({'success': True, 'message': "Your message has been sent successfully!"})
 
             except Exception as e:
-                error_message = f"Failed to send email: {e}"
-                if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-                    return JsonResponse({'success': False, 'message': error_message})
-                messages.error(request, error_message)
+                # Handle any errors
+                return JsonResponse({
+                    'success': False,
+                    'message': f"Failed to send email: {str(e)}"
+                })
+        
         else:
+            # If the form is not valid
             error_message = "Please correct the errors in the form."
-            if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-                return JsonResponse({'success': False, 'message': error_message})
-            messages.error(request, error_message)
+            return JsonResponse({'success': False, 'message': error_message})
+
     else:
+        # If the request method is not POST or not AJAX
         form = ContactForm()
-
-    return render(request, 'main/contact.html', {'form': form})
-
+        return render(request, 'main/contact.html', {'form': form})
 
 
 
