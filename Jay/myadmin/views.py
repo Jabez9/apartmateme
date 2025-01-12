@@ -19,7 +19,7 @@ def house_details(request,pk):
     house = get_object_or_404(House, pk=pk)
 
     #fetch images from s3
-    image_url = get_s3_url(house.image.name)
+    image_url = get_s3_url(house.main_image.name)
     return render(request, 'house_details.html', {'house': house, 'image_url': image_url})
 
 

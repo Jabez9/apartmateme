@@ -111,51 +111,43 @@ def onebd(request):
 
     # return render(request, 'main/contact.html', {'form': form})
 def contact(request):
-    if request.method == 'POST' and request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-        form = ContactForm(request.POST)  # Only handle the form data, no need for request.FILES
-        
-        if form.is_valid():
-            # Get cleaned data
-            name = form.cleaned_data['name']
-            email = form.cleaned_data['email']
-            subject = form.cleaned_data['subject']
-            message = form.cleaned_data['message']
+  # Handle AJAX form submission
+    if request.method == "POST" and request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+        subject = request.POST.get("subject")   
+        message = request.POST.get("message")
 
-            # Construct the email
-            full_subject = f"ApartmateMe Contact Form Submission: {subject}"
-            full_message = f"""
-            New contact form submission:
-
-            Name: {name}
-            Email: {email}
-            Subject: {subject}
-            Message: {message}
-            """
-
-            try:
-                # Send the email
+        try:
+                # Get the form data
+                name = request.POST.get("name")
+                email = request.POST.get("email")
+                subject= request.POST.get("subject")
+                message = request.POST.get("message")
+                
+                # Prepare the email content
+                email_subject = f"New Contact Me Form submission: {subject}"
+                email_message = f"Name: {name}\nEmail: {email}\nPhone: {phone}\nSubject: {subject}\nMessage: {message}"
+                
+                # Send email using Mailgun domain
                 send_mail(
-                    subject=full_subject,
-                    message=full_message,
-                    from_email="apartmateme@jabezhuya.tech",
-                    recipient_list=['apartmateme@gmail.com'], 
-                    fail_silently=True,
+                    email_subject,
+                    email_message,
+                    'apartmateme@jabezhuya.tech' , #my custom sender
+                    ['apartmateme@gmail.com',
+                    'mukoshijabez@yahoo.com'],  # Authorized recipient email
+                    fail_silently=False,
                 )
+                
                 # Return success response
-                return JsonResponse({'success': True, 'message': "Your message has been sent successfully!"})
-
-            except Exception as e:
+                return JsonResponse({"status": "success", "message": "Your message has been sent successfully!"})
+            
+        except Exception as e:
                 # Handle any errors
                 return JsonResponse({
-                    'success': False,
-                    'message': f"Failed to send email: {str(e)}"
+                    "status": "error",
+                    "message": f"Failed to send your message: {str(e)}"
                 })
-        
-        else:
-            # If the form is not valid
-            error_message = "Please correct the errors in the form."
-            return JsonResponse({'success': False, 'message': error_message})
-
     else:
         # If the request method is not POST or not AJAX
         form = ContactForm()
