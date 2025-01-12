@@ -136,7 +136,7 @@ def contact(request):
                 send_mail(
                     subject=full_subject,
                     message=full_message,
-                    from_email=settings.EMAIL_HOST_USER,
+                    from_email="apartmateme@jabezhuya.tech",
                     recipient_list=['apartmateme@gmail.com'], 
                     fail_silently=True,
                 )
