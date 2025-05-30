@@ -91,3 +91,41 @@ local_settings.py
 .env
 db.sqlite3
 .vercel
+# Node.js
+
+node\_modules/
+
+# Next.js
+
+.next/
+
+# Django migrations
+
+\*\*/migrations/
+\*\*/migrations/*.py
+\*\*/migrations/*.pyc
+
+# Python virtual environments
+
+venv/ .venv/ env/ 
+
+# Environment variables
+
+*.env
+.env
+.env.*
+
+# Python bytecode
+
+**pycache**/
+\*.py\[cod]
+
+# System files
+
+.DS\_Store
+Thumbs.db
+
+# VS Code
+
+.vscode/
+
