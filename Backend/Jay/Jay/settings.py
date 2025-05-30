@@ -213,10 +213,10 @@ USE_TZ = True
 
 
 # AWS S3 Storage settings
-MEDIA_URL= f'https://{env('AWS_STORAGE_BUCKET_NAME')}.s3.{env('AWS_S3_REGION_NAME')}amazonaws.com/'
+MEDIA_URL= f"https://{env('AWS_STORAGE_BUCKET_NAME')}.s3.{env('AWS_S3_REGION_NAME')}amazonaws.com/"
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATIC_URL = f'https://{env("AWS_STORAGE_BUCKET_NAME")}.s3.{env("AWS_S3_REGION_NAME")}.amazonaws.com/'
+STATIC_URL = f"https://{env('AWS_STORAGE_BUCKET_NAME')}.s3.{env('AWS_S3_REGION_NAME')}.amazonaws.com/"
 
 
 # Default primary key field type
