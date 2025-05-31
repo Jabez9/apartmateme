@@ -22,51 +22,43 @@ jobs:
 
       - name: Upload Backend folder to EC2
         run: |
-          rsync -avz --delete ./Backend/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:${{ secrets.EC2_DIR }}
+          rsync -avz --delete ./Backend/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:${{ secrets.DEPLOY_DIR }}/Backend/
 
-      - name: Deploy on EC2 (setup env, install deps, restart gunicorn)
+      - name: Deploy on EC2 (venv, env, install, gunicorn)
         run: |
-          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
-            cd ${{ secrets.EC2_DIR }}
+          ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << EOF
+            cd ${{ secrets.DEPLOY_DIR }}
 
-            # Create/update virtualenv
+            # Set up virtualenv if not already
             if [ ! -d "venv" ]; then
               python3 -m venv venv
             fi
             source venv/bin/activate
 
-            # Upgrade pip and install requirements
+            # Install dependencies
             pip install --upgrade pip
-            pip install -r requirements.txt
+            pip install -r Backend/requirements.txt
 
-            # Make sure the env folder path exists
-            mkdir -p Backend/Jay/Jay
+            # Write .env file to Backend/Jay/Jay/.env
+            ENV_PATH="Backend/Jay/Jay/.env"
+            mkdir -p "\$(dirname "\$ENV_PATH")"
 
-            # Write .env file in the exact path you want
-            cat > Backend/Jay/Jay/.env << ENV
-SECRET_KEY='${{ secrets.SECRET_KEY }}'
-DJANGOAPPMODE=Prod
-USEDEBUGDB=False
+            echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" > "\$ENV_PATH"
+            echo "DJANGOAPPMODE=Prod" >> "\$ENV_PATH"
+            echo "USEDEBUGDB=False" >> "\$ENV_PATH"
+            echo "EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }}" >> "\$ENV_PATH"
+            echo "EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }}" >> "\$ENV_PATH"
+            echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> "\$ENV_PATH"
+            echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> "\$ENV_PATH"
+            echo "AWS_STORAGE_BUCKET_NAME=${{ secrets.AWS_STORAGE_BUCKET_NAME }}" >> "\$ENV_PATH"
+            echo "AWS_S3_REGION_NAME=${{ secrets.AWS_S3_REGION_NAME }}" >> "\$ENV_PATH"
+            echo "DB_NAME=${{ secrets.DB_NAME }}" >> "\$ENV_PATH"
+            echo "DB_USER=${{ secrets.DB_USER }}" >> "\$ENV_PATH"
+            echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> "\$ENV_PATH"
+            echo "DB_HOST=${{ secrets.DB_HOST }}" >> "\$ENV_PATH"
+            echo "DB_PORT=5432" >> "\$ENV_PATH"
+            echo "FRONTEND_URL=${{ secrets.FRONTEND_URL }}" >> "\$ENV_PATH"
 
-EMAIL_HOST_USER='${{ secrets.EMAIL_HOST_USER }}'
-EMAIL_HOST_PASSWORD='${{ secrets.EMAIL_HOST_PASSWORD }}'
-
-AWS_ACCESS_KEY_ID='${{ secrets.AWS_ACCESS_KEY_ID }}'
-AWS_SECRET_ACCESS_KEY='${{ secrets.AWS_SECRET_ACCESS_KEY }}'
-AWS_STORAGE_BUCKET_NAME='${{ secrets.AWS_STORAGE_BUCKET_NAME }}'
-AWS_S3_REGION_NAME='${{ secrets.AWS_S3_REGION_NAME }}'
-
-DB_NAME='${{ secrets.DB_NAME }}'
-DB_USER='${{ secrets.DB_USER }}'
-DB_PASSWORD='${{ secrets.DB_PASSWORD }}'
-DB_HOST='${{ secrets.DB_HOST }}'
-DB_PORT=5432
-
-FRONTEND_URL='${{ secrets.FRONTEND_URL }}'
-ENV
-
-            # Restart Gunicorn service (update service name if needed)
+            # Restart Gunicorn
             sudo systemctl restart gunicorn
-
           EOF
-
