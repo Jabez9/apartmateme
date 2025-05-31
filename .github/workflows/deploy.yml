@@ -1,0 +1,72 @@
+name: Deploy Backend to EC2
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Upload Backend folder to EC2
+        run: |
+          rsync -avz --delete ./Backend/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:${{ secrets.EC2_DIR }}
+
+      - name: Deploy on EC2 (setup env, install deps, restart gunicorn)
+        run: |
+          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+            cd ${{ secrets.EC2_DIR }}
+
+            # Create/update virtualenv
+            if [ ! -d "venv" ]; then
+              python3 -m venv venv
+            fi
+            source venv/bin/activate
+
+            # Upgrade pip and install requirements
+            pip install --upgrade pip
+            pip install -r requirements.txt
+
+            # Make sure the env folder path exists
+            mkdir -p Backend/Jay/Jay
+
+            # Write .env file in the exact path you want
+            cat > Backend/Jay/Jay/.env << ENV
+SECRET_KEY='${{ secrets.SECRET_KEY }}'
+DJANGOAPPMODE=Prod
+USEDEBUGDB=False
+
+EMAIL_HOST_USER='${{ secrets.EMAIL_HOST_USER }}'
+EMAIL_HOST_PASSWORD='${{ secrets.EMAIL_HOST_PASSWORD }}'
+
+AWS_ACCESS_KEY_ID='${{ secrets.AWS_ACCESS_KEY_ID }}'
+AWS_SECRET_ACCESS_KEY='${{ secrets.AWS_SECRET_ACCESS_KEY }}'
+AWS_STORAGE_BUCKET_NAME='${{ secrets.AWS_STORAGE_BUCKET_NAME }}'
+AWS_S3_REGION_NAME='${{ secrets.AWS_S3_REGION_NAME }}'
+
+DB_NAME='${{ secrets.DB_NAME }}'
+DB_USER='${{ secrets.DB_USER }}'
+DB_PASSWORD='${{ secrets.DB_PASSWORD }}'
+DB_HOST='${{ secrets.DB_HOST }}'
+DB_PORT=5432
+
+FRONTEND_URL='${{ secrets.FRONTEND_URL }}'
+ENV
+
+            # Restart Gunicorn service (update service name if needed)
+            sudo systemctl restart gunicorn
+
+          EOF
+
